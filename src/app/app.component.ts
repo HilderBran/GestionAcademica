@@ -1,13 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { EstudiantesService } from './services/estudiantes.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [CommonModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'GestionAcademicas';
+  title = 'GestionAcademica';
+
+  private readonly estudiantesService = inject(EstudiantesService);
+
+  estudiantes$ = this.estudiantesService.obtenerEstudiantes();
 }
